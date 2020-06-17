@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "crud";
+$database = "herosimo";
 
 // membuat koneksi ke mysql server
 $conn = mysqli_connect($servername, $username, $password, $database);

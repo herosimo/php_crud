@@ -1,9 +1,8 @@
 <?php
 
 include 'config.php';
-$stock_result = mysqli_query($conn, "SELECT * FROM stock");
-$supplier_result = mysqli_query($conn, "SELECT * FROM supplier");
-$barang_result = mysqli_query($conn, "SELECT * FROM barang");
+$stock_result = mysqli_query($conn, "SELECT * FROM stock WHERE `stock`.`kode_supplier` = '7'");
+$barang_result = mysqli_query($conn, "SELECT * FROM barang ORDER BY harga ASC");
 ?>
 
 <!doctype html>
@@ -17,15 +16,16 @@ $barang_result = mysqli_query($conn, "SELECT * FROM barang");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Responsi</title>
+    <title>Soal - Responsi</title>
 </head>
 
 <body>
-    <!-- Data Stock -->
+    <!-- Soal 4 -->
     <div class="container m-5">
-        <h1>Data Stock</h1>
-        <a href="tambah_stock.php" class="badge badge-primary">Tambah Data</a>
-        <br><br>
+        <h1>Soal 4.</h1>
+        <p>
+            Lakukan query untuk menampilkan data stock yang berasal dari salah satu saja supplier, misalnya supplier xxxx.
+        </p>
         <table class="table">
             <thead>
                 <tr>
@@ -57,47 +57,12 @@ $barang_result = mysqli_query($conn, "SELECT * FROM barang");
         </table>
     </div>
 
-    <!-- Data Supplier -->
+    <!-- Soal 5 -->
     <div class="container m-5">
-        <h1>Data Supplier</h1>
-        <a href="tambah_supplier.php" class="badge badge-primary">Tambah Data</a>
-        <br><br>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Kode</th>
-                    <th scope="col">Nama Supplier</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">No Telefon</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                while ($d = mysqli_fetch_array($supplier_result)) { ?>
-                    <tr>
-                        <th scope="row"><?= $no++; ?></th>
-                        <td><?= $d['kode_supplier']; ?></td>
-                        <td><?= $d['nama_supplier']; ?></td>
-                        <td><?= $d['alamat']; ?></td>
-                        <td><?= $d['no_telepon']; ?></td>
-                        <td>
-                            <a href="edit_supplier.php?kode_supplier=<?php echo $d['kode_supplier']; ?>" class="badge badge-success">Edit</a>
-                            <a href="hapus.php?type=supplier&kode_supplier=<?php echo $d['kode_supplier']; ?>" class="badge badge-danger">Delete</a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Data Barang -->
-    <div class="container m-5">
-        <h1>Data Barang</h1>
-        <a href="tambah_barang.php" class="badge badge-primary">Tambah Data</a>
-        <br><br>
+        <h1>Soal 5.</h1>
+        <p>
+            Lakukan query untuk menampilkan data supplier yang memiliki barang xxxxx (salah satu barang) mulai dari harga termurah
+        </p>
         <table class="table">
             <thead>
                 <tr>
@@ -128,6 +93,8 @@ $barang_result = mysqli_query($conn, "SELECT * FROM barang");
             </tbody>
         </table>
     </div>
+
+
 </body>
 
 </html>
